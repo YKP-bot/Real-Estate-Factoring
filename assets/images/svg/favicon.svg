@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="不動産ファクタリング">
+  <rect width="64" height="64" rx="14" fill="#071b3a"/>
+  <path d="M14 46h36" stroke="#d8b15d" stroke-width="3" stroke-linecap="round"/>
+  <path d="M20 45V22l12-6 12 6v23" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M27 29h10M27 36h10" stroke="#8fb7e9" stroke-width="3" stroke-linecap="round"/>
+</svg>
