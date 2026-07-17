@@ -148,17 +148,47 @@ textarea {
 }
 
 .brand-symbol {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  place-items: center;
-  color: var(--navy-980);
-  background: linear-gradient(135deg, #fff8e5, var(--gold-500));
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
   border-radius: 50%;
-  font-family: Georgia, serif;
-  font-size: 0.82rem;
-  font-weight: 800;
+  isolation: isolate;
+  transition: transform 0.35s var(--ease), filter 0.35s var(--ease);
+}
+
+.brand-symbol::before {
+  position: absolute;
+  inset: 3px;
+  z-index: -1;
+  content: "";
+  border: 1px solid rgba(224, 187, 99, 0.58);
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 34% 25%, rgba(255, 255, 255, 0.98), rgba(243, 246, 250, 0.9) 42%, rgba(206, 216, 227, 0.76) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 7px 18px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px) saturate(125%);
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
+}
+
+.brand-symbol img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 5px rgba(3, 12, 26, 0.24));
+}
+
+.brand:hover .brand-symbol,
+.brand:focus-visible .brand-symbol {
+  filter: drop-shadow(0 0 8px rgba(225, 187, 94, 0.25));
+  transform: translateY(-1px);
 }
 
 .brand-copy {
@@ -225,19 +255,21 @@ textarea {
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  padding: 0 30px;
-  color: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.07));
+  gap: 12px;
+  padding: 0 9px 0 20px;
+  color: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(220, 181, 91, 0.48);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(4, 19, 43, 0.78), rgba(28, 53, 83, 0.56));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.38),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
-    0 10px 30px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  font-size: 0.86rem;
   font-weight: 800;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.24);
+  text-shadow: 0 1px 7px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
   transition:
     border-color 0.3s var(--ease),
     background 0.3s var(--ease),
@@ -250,25 +282,53 @@ textarea {
   inset: 0;
   z-index: -1;
   content: "";
-  background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.28), transparent 64%);
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.1), transparent 42%);
   pointer-events: none;
+}
+
+.header-cta::after {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  place-items: center;
+  content: "→";
+  color: var(--navy-980);
+  border: 1px solid rgba(255, 247, 220, 0.7);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f8e3aa, #c99636);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.74),
+    0 4px 12px rgba(0, 0, 0, 0.18);
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1;
+  text-shadow: none;
+  transition: transform 0.3s var(--ease), filter 0.3s var(--ease);
 }
 
 .header-cta:hover,
 .header-cta:focus-visible {
   color: var(--white);
-  border-color: rgba(255, 255, 255, 0.56);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.11));
+  border-color: rgba(232, 198, 116, 0.78);
+  background: linear-gradient(135deg, rgba(8, 29, 61, 0.92), rgba(37, 65, 97, 0.72));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.52),
-    0 14px 34px rgba(0, 0, 0, 0.24);
-  transform: translateY(-2px);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 11px 28px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(220, 181, 91, 0.08);
+  transform: translateY(-1px);
+}
+
+.header-cta:hover::after,
+.header-cta:focus-visible::after {
+  filter: brightness(1.08);
+  transform: translateX(2px);
 }
 
 .header-cta:active {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    0 7px 20px rgba(0, 0, 0, 0.18);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 5px 16px rgba(0, 0, 0, 0.2);
   transform: translateY(0) scale(0.985);
 }
 
@@ -1532,7 +1592,7 @@ textarea {
 .benefits-section {
   color: var(--white);
   background:
-    linear-gradient(90deg, transparent 0 62%, rgba(255, 255, 255, 0.055) 62% calc(62% + 1px), transparent calc(62% + 1px)),
+    radial-gradient(circle at 82% 18%, rgba(217, 182, 106, 0.09), transparent 34%),
     linear-gradient(135deg, var(--navy-980), var(--navy-900));
 }
 
@@ -1821,10 +1881,27 @@ textarea {
 
 .footer-inner {
   display: flex;
-  min-height: 112px;
+  min-height: 132px;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+}
+
+.brand--footer {
+  gap: 15px;
+}
+
+.brand--footer .brand-symbol {
+  width: 62px;
+  height: 62px;
+}
+
+.brand--footer .brand-symbol::before {
+  inset: 4px;
+}
+
+.brand--footer .brand-copy strong {
+  font-size: 1.12rem;
 }
 
 .sticky-cta {
@@ -2223,6 +2300,10 @@ textarea {
     height: 36px;
   }
 
+  .brand-symbol::before {
+    inset: 2px;
+  }
+
   .brand-copy strong {
     max-width: none;
     font-size: clamp(0.78rem, 3.4vw, 0.92rem);
@@ -2239,9 +2320,17 @@ textarea {
   }
 
   .header-cta {
-    min-height: 44px;
-    padding-inline: 18px;
-    font-size: 0.76rem;
+    min-height: 42px;
+    gap: 7px;
+    padding: 0 7px 0 12px;
+    font-size: 0.72rem;
+  }
+
+  .header-cta::after {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+    font-size: 0.78rem;
   }
 
   .hero {
@@ -2336,9 +2425,13 @@ textarea {
     height: 38px;
   }
 
-  .section-heading h2,
-  .contact-copy h2 {
-    font-size: clamp(1.95rem, 8.5vw, 3.1rem);
+  #about-title,
+  #reasons-title,
+  #benefits-title,
+  #flow-title,
+  #faq-title,
+  #contact-title {
+    font-size: 1.9rem;
   }
 
   .section-heading p:not(.eyebrow),
@@ -2529,6 +2622,49 @@ textarea {
     font-size: 0.9rem;
   }
 
+  .scheme-cta {
+    grid-template-columns: 50px minmax(0, 1fr) minmax(170px, 190px);
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .scheme-cta-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .scheme-cta-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .scheme-cta-copy small {
+    margin-bottom: 3px;
+    font-size: 0.62rem;
+    white-space: nowrap;
+  }
+
+  .scheme-cta-copy strong {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    word-break: keep-all;
+  }
+
+  .scheme-cta-copy span {
+    font-size: 0.78rem;
+    line-height: 1.65;
+    word-break: keep-all;
+  }
+
+  .scheme-cta-action {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding-inline: 16px;
+    font-size: 0.86rem;
+    white-space: nowrap;
+  }
+
   .benefit-item {
     grid-template-columns: 1fr;
     padding: 24px;
@@ -2578,8 +2714,23 @@ textarea {
 
   .footer-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    padding-block: 30px;
+    text-align: center;
+  }
+
+  .brand--footer {
+    gap: 12px;
+  }
+
+  .brand--footer .brand-symbol {
+    width: 56px;
+    height: 56px;
+  }
+
+  .brand--footer .brand-copy small {
+    display: block;
   }
 
   .sticky-cta {
@@ -2591,6 +2742,33 @@ textarea {
     justify-content: space-between;
     padding-inline: 22px;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 559px) {
+  .scheme-cta {
+    grid-template-areas:
+      "icon copy"
+      "action action";
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 14px 16px;
+    padding: 20px;
+  }
+
+  .scheme-cta-icon {
+    grid-area: icon;
+    width: 48px;
+    height: 48px;
+    align-self: start;
+  }
+
+  .scheme-cta-copy {
+    grid-area: copy;
+  }
+
+  .scheme-cta-action {
+    grid-area: action;
+    margin-top: 2px;
   }
 }
 
